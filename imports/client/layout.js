@@ -109,3 +109,20 @@ Template.chatBox.events({
         }
     }
 })
+
+
+        Template.login.events({
+            'submit form': function(event){
+                event.preventDefault();
+                var email = $('[name=emails]').val();
+                var password = $('[name=passwords]').val();
+                Meteor.loginWithPassword(email, password);
+            }
+        });
+
+        Template.navigation.events({
+        'click .logout': function(event){
+            event.preventDefault();
+            Meteor.logout();
+        }
+    });

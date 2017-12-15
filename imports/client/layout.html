@@ -4,16 +4,18 @@
 
 
 <body>
-  <h1>Live Chat App - Host.</h1>
-  {{> main}}
+  {{#if currentUser}}
+    <h1 style="color:blue;">Live Chat with Patients.</h1>
+     {{> main}}
+     {{> navigation}}
+  {{else}}
+    {{> login}}
+  {{/if}}
 </body>
 
 
 <template name="main">
-  <input type="text" name="client-app-name" placeholder="App name...">
-  <button type="button" class="js-add-new-client-app">Add new client app</button>
-  <hr>
-  <h3>Your client apps:</h3>
+  <h3>Here is app Name: Depression. Our patients are connected to this app. Click on it, you will see the session id's generated. When any person want to chat always there will be a new session id. Click on the session id you will be able to chat to that particular person and it's a live chat.</h3>
   {{#each app in clientApps}}
     <div>
       {{> appItem name=app.name id=app._id}}
@@ -66,3 +68,17 @@
     <div class="message">{{message}}</div>
   </div>
 </template>
+
+
+<template name="login">
+    <h2>Login</h2>
+    <form class="login">
+        <p>Email: <input type="email" name="emails"></p>
+        <p>Password: <input type="password" name="passwords"></p>
+        <p><input type="submit" value="Login"></p>
+    </form>
+</template>
+
+<template name="navigation">
+    <p><a href="#" class="logout">Logout</a></p>
+  </template>
